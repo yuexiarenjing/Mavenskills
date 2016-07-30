@@ -202,3 +202,51 @@ site        生成项目站点(pre-site   site    post-site   site-deploy)
 短路优先：依赖传递的次数短的优先
 先声明优先：dependency的排列顺序
 ```
+#聚合和继承
+聚合
+```
+<packaging>pom</packaging>
+
+<modules>
+    <module>A相对路径（../hongxing-bge）</module>
+    <module>B</module>
+    <module>C</module>
+</modules>
+```
+
+继承
+```
+并不会在项目中运行，新建一个parent的maven项目（包含公共的jar包）    
+
+<packaging>pom</packaging>
+
+<properties>
+    <junit.version>3.8.1</junit.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+</properties>
+
+<dependencyManagement>
+            <dependencies>
+                <dependency>
+                    <groupId>junit</groupId>
+                    <artifactId>junit</artifactId>
+                    <version>${junit.version}</version>
+                    <scope>test</scope>
+                </dependency>
+            </dependencies>
+    </dependencyManagement>
+    
+在其他maven项目中可以继承
+
+<parent>
+    父pom的坐标
+</parent>
+
+<dependencies>
+    <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <!--    此位置的两行可删除  -->
+    </dependency>
+</dependencies>
+```
