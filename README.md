@@ -55,6 +55,7 @@ mvn archetype:generate  -DgroupId=组织名，公司网址的反写+项目名
 
 ```
 
+```
 坐标
     构件
 仓库
@@ -62,7 +63,8 @@ mvn archetype:generate  -DgroupId=组织名，公司网址的反写+项目名
 镜像仓库(setting.xml)
 更改仓库位置
     可以新建一个maven的repo并将setting.xml文件备份一份在这里
-    
+```
+
 #maven的生命周期和插件
 maven的eclipse插件
 ```
@@ -167,4 +169,36 @@ site        生成项目站点(pre-site   site    post-site   site-deploy)
   </modules>
     
 </project>
+```
+#依赖的范围
+```
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+      <!-- 
+        compile，默认的，编译、测试、运行三种classpath都有效
+        provided，编译、测试
+        runtime，测试、运行有效
+        test,测试
+        system，编译、测试
+        import，导入依赖
+      -->
+    </dependency>
+  </dependencies>
+```
+
+依赖传递
+```
+    A依赖B，B依赖C，则A依赖于C
+    B和C需要install进本地repo
+    若A不想依赖于C，可以在添加对B的依赖时<exclusions><exclusion>+C的定位信息...来取消对C的依赖
+```
+
+依赖冲突
+```
+短路优先：依赖传递的次数短的优先
+先声明优先：dependency的排列顺序
 ```
