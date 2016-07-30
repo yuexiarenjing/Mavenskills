@@ -1,5 +1,7 @@
 # Mavenskills
 
+	管理项目的依赖和构建过程
+
 Download:
 ```
 http://maven.apache.org/
@@ -321,4 +323,6 @@ index.jsp飘红，原因是没有加入servlet的jar，到官网找到：
 
 jetty maven plugin在maven的官方repo中
 tomcat在tomcat官网的Maven Plugin中
+
+pom.xml run as maven build, clean package / jetty:run 
 ```
