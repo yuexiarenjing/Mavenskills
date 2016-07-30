@@ -170,7 +170,8 @@ site        生成项目站点(pre-site   site    post-site   site-deploy)
     
 </project>
 ```
-#依赖的范围
+#依赖的范围、传递、继承
+依赖的范围
 ```
   <dependencies>
     <dependency>
@@ -249,4 +250,75 @@ site        生成项目站点(pre-site   site    post-site   site-deploy)
         <!--    此位置的两行可删除  -->
     </dependency>
 </dependencies>
+```
+
+#使用maven构建web项目
+```
+New maven project, choose:
+    maven-archetype-webapp
+index.jsp飘红，原因是没有加入servlet的jar，到官网找到：
+    <!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.0.1</version>
+			<!-- 只在编译和测试时运行 -->
+			<scope>provided</scope>
+		</dependency>
+默认maven项目的src下只有resource要手动添加sourcefolder：/src/main/java可能会提示已存在，此时切换到navigate窗口之间创建java目录即可
+```
+
+配置运行环境
+```
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>edu.tongji.webdemo</groupId>
+	<artifactId>webdemo</artifactId>
+	<packaging>war</packaging>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>webdemo Maven Webapp</name>
+	<url>http://maven.apache.org</url>
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.10</version>
+			<scope>test</scope>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.0.1</version>
+			<!-- 只在编译和测试时运行 -->
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
+	<build>
+		<finalName>webdemo</finalName>
+		<plugins>
+			<plugin>
+				<!-- <groupId>org.mortbay.jetty</groupId> <artifactId>jetty-maven-plugin</artifactId> 
+					<version>8.1.16.v20140903</version> -->
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<version>2.2</version>
+
+				<!-- 在打包成功后运行jetty:run来运行jetty服务 -->
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>
+
+jetty maven plugin在maven的官方repo中
+tomcat在tomcat官网的Maven Plugin中
 ```
