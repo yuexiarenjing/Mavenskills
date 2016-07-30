@@ -39,13 +39,13 @@ pom.xml
 
 Commands
 ```
-mvn -v          #show version details
-mvn compile     #compile java project and generate target directory contains classes file
-mvn test        #run debug test
-mvn package     #generate jar
+mvn -v                          #show version details
+mvn compile                     #compile java project and generate target directory contains classes file
+mvn test                        #run debug test
+mvn package                     #generate jar
 
-mvn clean       #delete target directory
-mvn install     #install project into maven repository make other project can use it
+mvn clean                       #delete target directory
+mvn install                     #install project into maven repository make other project can use it
 
 mvn archetype:generate          #automate generate maven project
 mvn archetype:generate  -DgroupId=组织名，公司网址的反写+项目名
@@ -54,3 +54,16 @@ mvn archetype:generate  -DgroupId=组织名，公司网址的反写+项目名
                         -Dpackage=代码所在的包名
 
 ```
+
+坐标
+    构件
+仓库
+    本地仓库和远程仓库
+镜像仓库(setting.xml)
+更改仓库位置
+    可以新建一个maven的repo并将setting.xml文件备份一份在这里
+    
+#maven的eclipse插件
+新建一个maven project,quick start ,右键pom，run as maven build...，goal填写compile或package命令
+
+
