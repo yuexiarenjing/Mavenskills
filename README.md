@@ -35,6 +35,8 @@ pom.xml
 </dependencies>
 ```
 
+
+
 Commands
 ```
 mvn -v          #show version details
@@ -45,5 +47,10 @@ mvn package     #generate jar
 mvn clean       #delete target directory
 mvn install     #install project into maven repository make other project can use it
 
+mvn archetype:generate          #automate generate maven project
+mvn archetype:generate  -DgroupId=组织名，公司网址的反写+项目名
+                        -DartifactId=项目名-模块
+                        -Dversion=版本号
+                        -Dpackage=代码所在的包名
 
 ```
